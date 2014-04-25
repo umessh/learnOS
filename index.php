@@ -140,8 +140,7 @@ $app->get('/variables/:type', function ($type) {
 
     	try {
   // open connection to MongoDB server
-  $conn = new Mongo();
-
+  $conn = MongoClient($_ENV['OPENSHIFT_MONGODB_DB_URL']);
   // access database
   $db = $conn->myApp;
 
