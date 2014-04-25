@@ -11,6 +11,8 @@ require 'Slim/Slim.php';
 
 \Slim\Slim::registerAutoloader();
 
+
+
 /**
  * Step 2: Instantiate a Slim application
  *
@@ -132,6 +134,33 @@ EOT;
 );
 $app->get('/hello/:name', function ($name) {
     echo "Hello, $name";
+});
+
+$app->get('/variables/:type', function ($type) {
+
+    	try {
+  // open connection to MongoDB server
+  $conn = new Mongo();
+
+  // access database
+  $db = $conn->myApp;
+
+  // access collection
+  $collection = $db->myData;
+
+  // execute query
+  // retrieve all documents
+  $cursor = $collection->find(array('type':$type);
+ header("Content-Type: application/json");
+ echo json_encode(iterator_to_array($cursor));
+
+  // disconnect from server
+  $conn->close();
+} catch (MongoConnectionException $e) {
+  die('Error connecting to MongoDB server');
+} catch (MongoException $e) {
+  die('Error: ' . $e->getMessage());
+}
 });
 
 // POST route
