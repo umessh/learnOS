@@ -136,7 +136,7 @@ $app->get('/hello/:name', function ($name) {
     echo "Hello, $name";
 });
 
-$app->get('/variables/:type', function ($type) {
+$app->get('/variables/:type', function ($type) use ($app) {
 
     	try {
   // open connection to MongoDB server 
