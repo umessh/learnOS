@@ -150,7 +150,7 @@ $app->get('/variables/:type', function ($type) {
 
   // execute query
   // retrieve all documents
-  $cursor = $collection->find(array('type':$type);
+  $cursor = $collection->find(array('type' => $type));
  header("Content-Type: application/json");
  echo json_encode(iterator_to_array($cursor));
 
