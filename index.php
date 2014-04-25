@@ -159,6 +159,9 @@ $app->get('/variables/:type', function ($type) {
   die('Error connecting to MongoDB server');
 } catch (MongoException $e) {
   die('Error: ' . $e->getMessage());
+} catch (Exception $e)
+{
+	echo $e->getMessage();
 }
 });
 
