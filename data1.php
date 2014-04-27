@@ -24,7 +24,7 @@
 					<h3>Gerne</h3>
                     <p><input type="text" name="gerne" id="title/"></p>
 					<h3>Hero</h3>
-                   <p>
+                    <select name="hero_id">
 						 <?php 
 						 try {
 
@@ -48,9 +48,15 @@
 		catch (Exception $e)
 		{
 			echo $e->getMessage();
-		} ?>
-							
-				</p>
+		}
+		echo $cursor->count();
+						 while ($cursor->hasNext()):
+							$actor = $cursor->getNext();
+							echo $actor['_id']; 
+							echo $actor['name'];?>
+							<option value="<?php echo $actor['_id']; ?>"><?php echo $actor['name']; ?></option>
+						<?php endwhile; ?>
+					</select>
                     <p><input type="submit" name="btn_submit" value="Save"/></p>
                 </form>
                 
