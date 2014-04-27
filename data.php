@@ -70,7 +70,7 @@ switch($action){
 
 <!DOCTYPE html >
 
-<html >
+<html>
     <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="stylesheet" href="style.css"/>
@@ -98,8 +98,9 @@ switch($action){
                     <p><input type="text" name="gerne" id="title/"></p>
 					<h3>Hero</h3>
                     <select name="hero_id">
-						 <?php while ($cursor->hasNext()):
-							$actor = $cursor->getNext(); ?>
+						<?php while ($cursor->hasNext()):
+							$actor = $cursor->getNext();
+							?>
 							<option value="<?php echo $actor['_id']; ?>"><?php echo $actor['name']; ?></option>
 						<?php endwhile; ?>
 					</select>
