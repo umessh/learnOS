@@ -2,7 +2,8 @@
 
 $action = (!empty($_POST['btn_submit']) && ($_POST['btn_submit'] === 'Save')) ? 'save_movie' 
                                                                               : 'show_form';
-echo $action;
+if ($action === 'show_form')
+{
 		try {
 
             $connection = new MongoClient($_ENV['OPENSHIFT_MONGODB_DB_URL']);
@@ -27,7 +28,34 @@ echo $action;
 			echo $e->getMessage();
 		}
 		echo $cursor->count();
+}
+else{
+	 try {
 
+			$connection = new MongoClient($_ENV['OPENSHIFT_MONGODB_DB_URL']);
+            $database   = $connection->selectDB('tmdb');
+            $collection = $database->selectCollection('movies');
+            
+			$movies               = array();
+            $movies['name']      = $_POST['name'];
+			$movies['release_date']      = new MongoDate(strtotime($_POST['release_date']));
+            $movies['storyline']    = $_POST['storyline'];
+			$movies['duration']    = (int) $_POST['duration'];
+			$movies['gerne']    = $_POST['gerne'];
+            $movies['actors'] = array()
+			$movies['actors']['hero'] = new MongoId($_POST['hero_id']);
+            $collection->insert($movies);
+        
+        } catch(MongoConnectionException $e) {
+
+            die("Failed to connect to database ".$e->getMessage());
+        }
+
+        catch(MongoException $e) {
+
+            $die('Failed to insert data '.$e->getMessage());
+        }
+}
 ?>
 
 <!DOCTYPE html >
