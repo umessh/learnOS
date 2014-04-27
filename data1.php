@@ -52,8 +52,7 @@
 		echo $cursor->count();
 						 while ($cursor->hasNext()):
 							$actor = $cursor->getNext();
-							echo $actor['_id']; 
-							echo $actor['name'];?>
+							?>
 							<option value="<?php echo $actor['_id']; ?>"><?php echo $actor['name']; ?></option>
 						<?php endwhile; ?>
 					</select>
