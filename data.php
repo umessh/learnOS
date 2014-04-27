@@ -2,7 +2,6 @@
 
 $action = (!empty($_POST['btn_submit']) && ($_POST['btn_submit'] === 'Save')) ? 'save_movie' 
                                                                               : 'show_form';
-echo $action
 switch($action){
     
     case 'save_movie':
