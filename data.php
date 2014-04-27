@@ -30,31 +30,7 @@ if ($action === 'show_form')
 		echo $cursor->count();
 }
 else{
-	 try {
-
-			$connection = new MongoClient($_ENV['OPENSHIFT_MONGODB_DB_URL']);
-            $database   = $connection->selectDB('tmdb');
-            $collection = $database->selectCollection('movies');
-            
-			$movies               = array();
-            $movies['name']      = $_POST['name'];
-			$movies['release_date']      = new MongoDate(strtotime($_POST['release_date']));
-            $movies['storyline']    = $_POST['storyline'];
-			$movies['duration']    = (int) $_POST['duration'];
-			$movies['gerne']    = $_POST['gerne'];
-            $movies['actors'] = array()
-			$movies['actors']['hero'] = new MongoId($_POST['hero_id']);
-            $collection->insert($movies);
-        
-        } catch(MongoConnectionException $e) {
-
-            die("Failed to connect to database ".$e->getMessage());
-        }
-
-        catch(MongoException $e) {
-
-            $die('Failed to insert data '.$e->getMessage());
-        }
+ echo "what is this";
 }
 ?>
 
