@@ -24,6 +24,33 @@
 					<h3>Gerne</h3>
                     <p><input type="text" name="gerne" id="title/"></p>
 					<h3>Hero</h3>
+                   <p>
+						 <?php 
+						 try {
+
+            $connection = new MongoClient($_ENV['OPENSHIFT_MONGODB_DB_URL']);
+            $database   = $connection->selectDB('tmdb');
+            $collection = $database->selectCollection('actors');
+            
+            $cursor = $collection->find(array(), array('name', '_id')); 
+        
+        } catch(MongoConnectionException $e) {
+
+            die("Failed to connect to database ".$e->getMessage());
+			echo $e->getMessage();
+        }
+
+        catch(MongoException $e) {
+
+            $die('Failed to insert data '.$e->getMessage());
+			echo $e->getMessage();
+        }
+		catch (Exception $e)
+		{
+			echo $e->getMessage();
+		} ?>
+							
+				</p>
                     <p><input type="submit" name="btn_submit" value="Save"/></p>
                 </form>
                 
