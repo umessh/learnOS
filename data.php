@@ -2,7 +2,7 @@
 
 $action = (!empty($_POST['btn_submit']) && ($_POST['btn_submit'] === 'Save')) ? 'save_movie' 
                                                                               : 'show_form';
-echo $action
+echo $action;
 		try {
 
             $connection = new MongoClient($_ENV['OPENSHIFT_MONGODB_DB_URL']);
