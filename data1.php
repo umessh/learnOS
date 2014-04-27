@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html >
     <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -24,36 +24,6 @@
 					<h3>Gerne</h3>
                     <p><input type="text" name="gerne" id="title/"></p>
 					<h3>Hero</h3>
-                    <select name="hero_id">
-						 <?php 
-						 try {
-
-            $connection = new MongoClient($_ENV['OPENSHIFT_MONGODB_DB_URL']);
-            $database   = $connection->selectDB('tmdb');
-            $collection = $database->selectCollection('actors');
-            
-            $cursor = $collection->find(array(), array('name', '_id')); 
-        
-        } catch(MongoConnectionException $e) {
-
-            die("Failed to connect to database ".$e->getMessage());
-			echo $e->getMessage();
-        }
-
-        catch(MongoException $e) {
-
-            $die('Failed to insert data '.$e->getMessage());
-			echo $e->getMessage();
-        }
-		catch (Exception $e)
-		{
-			echo $e->getMessage();
-		}
-						 while ($cursor->hasNext()):
-							$actor = $cursor->getNext(); ?>
-							<option value="<?php echo $actor['_id']; ?>"><?php echo $actor['name']; ?></option>
-						<?php endwhile; ?>
-					</select>
                     <p><input type="submit" name="btn_submit" value="Save"/></p>
                 </form>
                 
