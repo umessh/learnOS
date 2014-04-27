@@ -63,6 +63,7 @@ switch($action){
 		{
 			echo $e->getMessage();
 		}
+		echo $cursor->count();
     default:
 }
 ?>
