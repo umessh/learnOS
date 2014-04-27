@@ -25,12 +25,18 @@ switch($action){
         } catch(MongoConnectionException $e) {
 
             die("Failed to connect to database ".$e->getMessage());
+			echo $e->getMessage();
         }
 
         catch(MongoException $e) {
 
             $die('Failed to insert data '.$e->getMessage());
+			echo $e->getMessage();
         }
+		catch (Exception $e)
+		{
+			echo $e->getMessage();
+		}
         break;
         
     case 'show_form':
@@ -40,17 +46,23 @@ switch($action){
             $database   = $connection->selectDB('tmdb');
             $collection = $database->selectCollection('actors');
             
-            $cursor = $collection->find(array(), $fields=array('name', '_id')); 
+            $cursor = $collection->find(array(), array('name', '_id')); 
         
         } catch(MongoConnectionException $e) {
 
             die("Failed to connect to database ".$e->getMessage());
+			echo $e->getMessage();
         }
 
         catch(MongoException $e) {
 
             $die('Failed to insert data '.$e->getMessage());
+			echo $e->getMessage();
         }
+		catch (Exception $e)
+		{
+			echo $e->getMessage();
+		}
     default:
 }
 ?>
